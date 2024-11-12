@@ -7,7 +7,7 @@ namespace HelloWorld
 {
     public class HelloWorldManager : MonoBehaviour
     {
-        private NetworkManager m_NetworkManager;
+        private static NetworkManager m_NetworkManager;
 
         void Awake()
         {
@@ -31,7 +31,7 @@ namespace HelloWorld
             GUILayout.EndArea();
         }
 
-        void StartButtons()
+        static void StartButtons()
         { 
             if (GUILayout.Button("Host")) 
                 m_NetworkManager.StartHost();
@@ -41,7 +41,7 @@ namespace HelloWorld
                 m_NetworkManager.StartServer();
         }
 
-       void StatusLabels()
+        static void StatusLabels()
         {
             var mode = m_NetworkManager.IsHost ?
                 "Host" : m_NetworkManager.IsServer ? "Server" : "Client";
@@ -51,7 +51,7 @@ namespace HelloWorld
             GUILayout.Label("Mode: " + mode);
         }
 
-        void SubmitNewPosition()
+        static void SubmitNewPosition()
         {
             if (GUILayout.Button(m_NetworkManager.IsServer ? "Move" : "Request Position Change"))
             {
